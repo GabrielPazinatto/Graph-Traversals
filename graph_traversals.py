@@ -41,9 +41,12 @@ class Graph:
             cost = cost + edge.weight
         return cost
     
-    def add_edge(self, new_edge = Edge(0, 0, 0)) -> None:
-        v1 = new_edge.v1
-        v2 = new_edge.v2
+    def add_edge(self, new_v1 = 0, new_v2 = 0, new_weight = 0) -> None:
+        
+        v1 = min(new_v1, new_v2)
+        v2 = max(new_v1, new_v2)
+        
+        new_edge = Edge(v1, v2, weight)
         
         if self.adj_list[v1] == []:
             self.adj_list[v1] = [new_edge]
@@ -68,8 +71,6 @@ class Graph:
                 
         return result
     
-
-        
 v1 = None
 v2 = None
 weight = None
@@ -79,14 +80,12 @@ vertexes = int(input())
 graph = Graph(vertexes)
     
 while(v1 != 0 or v2 != 0):
-    v1, v2, weight = str.split(input("Input an edge: "))
+    v1, v2= str.split(input("Input an edge: "))
     v1 = int(v1)
     v2 = int(v2)
-    weight = int(weight)
-
-    new_edge = Edge(v1, v2, weight)
+    #weight = int(weight)
     
-    graph.add_edge(new_edge)
+    graph.add_edge(v1,v2,weight)
     
 graph.print()
         

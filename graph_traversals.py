@@ -67,4 +67,27 @@ class Graph:
                 self.DFS(edge.v2, visited, result)
                 
         return result
+    
+
         
+v1 = None
+v2 = None
+weight = None
+
+vertexes = int(input())
+
+graph = Graph(vertexes)
+    
+while(v1 != 0 or v2 != 0):
+    v1, v2, weight = str.split(input("Input an edge: "))
+    v1 = int(v1)
+    v2 = int(v2)
+    weight = int(weight)
+
+    new_edge = Edge(v1, v2, weight)
+    
+    graph.add_edge(new_edge)
+    
+graph.print()
+        
+print(graph.DFS())

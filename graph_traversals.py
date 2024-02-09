@@ -71,6 +71,29 @@ class Graph:
                 
         return result
     
+    def BFS(self, v = 0, visited = None, queue = None, result = None) ->list:
+        if visited == None: visited = [False]*self.vertexes
+        if result == None: result = []
+        if queue == None: queue = []
+    
+        visited[v] = True
+        queue.append(v)
+        
+        while(queue):
+            v = queue.pop(0)
+            result.append(v)
+            
+            for edge in self.adj_list[v]:
+                if not visited[edge.v1]:
+                    queue.append(edge.v1)
+                    visited[edge.v1] = True
+                    
+                if not visited[edge.v2]:
+                    queue.append(edge.v2)
+                    visited[edge.v2] = True
+        
+        return result
+    
 v1 = None
 v2 = None
 weight = None
@@ -90,3 +113,4 @@ while(v1 != 0 or v2 != 0):
 graph.print()
         
 print(graph.DFS())
+print(graph.BFS())
